@@ -7,8 +7,8 @@ class Collection extends Model
   public function find_user_collection($userID)
   {
     $sql = "SELECT pc.collectionID, pc.accessRights, pc.userID, count(*) noOfPhotos, p.path coverPhoto
-            FROM photoCollection pc 
-            INNER JOIN photo p 
+            FROM photoCollection pc
+            INNER JOIN photo p
                   ON pc.collectionID = p.collectionID
             WHERE pc.userID = :userID
             GROUP BY pc.collectionID";
@@ -62,7 +62,7 @@ class Collection extends Model
   public function access_collection($userID)
   {
     $sql = "SELECT pc.collectionID, pc.accessRights, pc.userID, count(*) noOfPhotos, p.path coverPhoto
-            FROM photocollection pc
+            FROM photoCollection pc
             INNER JOIN photo p
                   ON pc.collectionID = p.collectionID
             WHERE
@@ -124,7 +124,7 @@ class Collection extends Model
                     ON a.collectionID = p.collectionID
               WHERE a.collectionID IN (
                 SELECT DISTINCT pc.collectionID
-                FROM photocollectionaccessrights AS pcar, circlefriends AS cf, photocollection as pc
+                FROM photoCollectionAccessRights AS pcar, circleFriends AS cf, photoCollection as pc
                 WHERE
                   cf.circleID = pcar.circleID
                   AND pc.collectionID = pcar.collectionID
@@ -154,7 +154,7 @@ class Collection extends Model
   public function find_all_user_circles($userID)
   {
     $sql = "SELECT DISTINCT c.*
-            FROM circle AS c, circlefriends AS cf, photocollection as pc
+            FROM circle AS c, circleFriends AS cf, photoCollection as pc
             WHERE cf.circleID = c.circleID AND pc.userID = cf.userID AND cf.userID = :userID";
 
     $query = $this->db->prepare($sql);
@@ -166,7 +166,7 @@ class Collection extends Model
   public function find_access_circles($collectionID)
   {
     $sql = "SELECT *
-            FROM photocollectionaccessrights
+            FROM photoCollectionAccessRights
             WHERE collectionID = :collectionID";
 
     $query = $this->db->prepare($sql);
@@ -215,7 +215,7 @@ class Collection extends Model
   public function insert_access_circles($collectionID, $circleID)
   {
     $timestamp = date("Y-m-d H:i:s");
-    $sql = "INSERT INTO photocollectionaccessrights (collectionID, circleID, CREATED_AT)
+    $sql = "INSERT INTO photoCollectionAccessRights (collectionID, circleID, CREATED_AT)
             VALUES (:collectionID, :circleID, $timestamp)";
 
     $query = $this->db->prepare($sql);
@@ -226,7 +226,7 @@ class Collection extends Model
 
   public function delete_access_circles($collectionID, $circleID)
   {
-    $sql = "DELETE FROM photocollectionaccessrights
+    $sql = "DELETE FROM photoCollectionAccessRights
             WHERE collectionID=:collectionID AND circleID = :circleID";
 
     $query = $this->db->prepare($sql);
