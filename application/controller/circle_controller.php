@@ -86,6 +86,7 @@ class CircleController
         $_SESSION['message'] = 'Circle created!';
         $name = $model->find_circleID_by_name($circle_name);
         $addUser = $model->add_circle_member($name->circleID,$this->current_userID);
+        $_SESSION['message'] = 'Member added!';
       } else {
         $_SESSION['message'] = 'Fail to create circle!';
       }
