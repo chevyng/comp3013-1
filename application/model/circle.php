@@ -21,7 +21,7 @@ class Circle extends Model
   {
     // Circles that User belong to but do not manage
     $sql = "SELECT c.*
-            FROM circle as c, circlefriends as cf
+            FROM circle as c, circleFriends as cf
             WHERE cf.userID = :userID
             AND cf.circleID = c.circleID
             AND c.circleID NOT IN (
@@ -63,7 +63,7 @@ class Circle extends Model
 
   public function find_members_by_circleID($circleID){
     $sql = "SELECT *
-            FROM circlefriends
+            FROM circleFriends
             WHERE circleID = :circleID";
 
     // TODO: Join user and blog to get detailed information
@@ -118,7 +118,7 @@ class Circle extends Model
   public function add_circle_member($circleID, $userID)
   {
     $timestamp = date("Y-m-d H:i:s");
-    $sql = "INSERT INTO circlefriends (circleID, userID, CREATED_AT)
+    $sql = "INSERT INTO circleFriends (circleID, userID, CREATED_AT)
             VALUES (:circleID, :userID, '$timestamp')";
 
     $query = $this->db->prepare($sql);
