@@ -17,8 +17,8 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'group8');
 define('DB_USER', 'root');
-define('DB_PASS', 'root');
-//define('DB_PASS', 'COMP3013');
+// define('DB_PASS', 'root');
+define('DB_PASS', 'COMP3013');
 define('DB_CHARSET', 'utf8');
 
 ?>
