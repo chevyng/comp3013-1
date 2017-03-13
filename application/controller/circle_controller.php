@@ -53,6 +53,7 @@ class CircleController
     $members = $model->find_members_by_circleID($circleID);
     $members_id = array_column($members, 'userID');
     echo $members[0]->userID;
+    echo count($members_id);
     if (!in_array($this->current_userID, $members_id)) {
       $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
       // Redirect(URL . 'circle');
