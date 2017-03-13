@@ -52,14 +52,13 @@ class CircleController
 
     $members = $model->find_members_by_circleID($circleID);
     // $members_id = array_column($members, 'userID');
-    $_SESSION['message'] = 'Members_ID: ' . count($members);
+    // $_SESSION['message'] = 'Members_ID: ' . count($members);
     foreach($members as $arr) {
-      print_r($arr);
       // $_SESSION['message'] = 'Members ID in circle ' . $circleID . ' -ID = ' . $arr->userID;
     }
     // $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
-    if (!in_array($this->current_userID, $members->userID)) {
-      // $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
+    if (!in_array($this->current_userID, $members)) {
+      $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
       Redirect(URL . 'circle');
     }
 
