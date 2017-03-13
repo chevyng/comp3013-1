@@ -55,7 +55,7 @@ class CircleController
     echo $members[0]->userID;
     if (!in_array($this->current_userID, $members_id)) {
       $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
-      Redirect(URL . 'circle');
+      // Redirect(URL . 'circle');
     }
 
     $friend_model = new Friend();
