@@ -52,6 +52,7 @@ class CircleController
 
     $members = $model->find_members_by_circleID($circleID);
     $members_id = array_column($members, 'userID');
+    $_SESSION['message'] = 'Members_ID: ' . $members_id;
     foreach($members_id as $arr) {
       $_SESSION['message'] = 'Members ID in circle ' . $circleID . ' -ID = ' . $arr->userID;
     }
