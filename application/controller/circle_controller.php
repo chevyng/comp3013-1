@@ -56,7 +56,7 @@ class CircleController
       $_SESSION['message'] = 'Members ID in circle ' . $circleID . ' -ID = ' . $arr->userID;
     }
     // $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
-    if (!in_array($this->current_userID, $members_id)) {
+    if (!in_array($this->current_userID, $members->userID )) {
       // $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
       Redirect(URL . 'circle');
     }
