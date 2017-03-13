@@ -15,10 +15,10 @@
         <div class="row">
         <?php $privacy = array('Friends', 'Friends of Friends', 'Public'); ?>
         <?php foreach ($collections_owned as $collection) { ?>
-          <?if (in_array($collection->collectionID, array_column($collections_access, "collectionID"))) { ?>
+          <?php if (in_array($collection->collectionID, array_column($collections_access, "collectionID"))) { ?>
             <div class="col-3">
               <div class="card mb-3">
-                <img class="card-img-top" src="<?php echo URL . $collection->coverPhoto ?>" onError="this.src='<?php echo URL; ?>images/missing.jpg'" style="object-fit: cover; height: 200px;">
+                <img class="card-img-top" src="<?php echo URL . $collection->coverPhoto ?>" onError="this.src='<?php echo URL ?>images/missing.jpg'" style="object-fit: cover; height: 200px;">
                 <div class="card-block">
                   <h5 class="card-title">Collection <?php echo $collection->collectionID ?></h5>
                   <p class="card-text text-muted">
