@@ -62,7 +62,7 @@ class Circle extends Model
   }
 
   public function find_members_by_circleID($circleID){
-    $sql = "SELECT *
+    $sql = "SELECT userID
             FROM circleFriends
             WHERE circleID = :circleID";
 
