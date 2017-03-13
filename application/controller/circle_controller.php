@@ -51,8 +51,9 @@ class CircleController
     }
 
     $members = $model->find_members_by_circleID($circleID);
-    // $members_id = array_column($members, 'userID');
-    if (in_array($this->current_userID, $members)) {
+    $members_id = array_column($members, 'userID');
+    echo $members[0]->userID;
+    if (!in_array($this->current_userID, $members_id)) {
       $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
       Redirect(URL . 'circle');
     }
@@ -63,7 +64,7 @@ class CircleController
 
     $friends_not_members = NULL;
     if ($friends != NULL) {
-      $friends_not_members = array_diff($friends_id, $members);
+      $friends_not_members = array_diff($friends_id, $members_id);
     }
 
     $messages = $model->find_messages_by_circleID($circleID);
