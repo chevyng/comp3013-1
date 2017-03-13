@@ -54,12 +54,11 @@ class CircleController
     // $members_id = array_column($members, 'userID');
     // $_SESSION['message'] = 'Members_ID: ' . count($members);
     foreach($members as $arr) {
-      echo("<script>console.log('PHP: ".$arr."');</script>");
+      debug_to_console($arr);
       // $_SESSION['message'] = 'Members ID in circle ' . $circleID . ' -ID = ' . $arr->userID;
     }
     // $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
     if (!in_array($this->current_userID, $members)) {
-      echo("<script>console.log('PHP current_userID: ".$this->current_userID."');</script>");
       $_SESSION['message'] = 'You are not member of Circle ' . $circleID;
       Redirect(URL . 'circle');
     }
@@ -79,6 +78,15 @@ class CircleController
     require APP . 'view/circles/view.php';
     require APP . 'view/_templates/footer.php';
   }
+
+  public function debug_to_console($data) {
+    if(is_array($data) || is_object($data))
+	{
+		echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
+	} else {
+		echo("<script>console.log('PHP: ".$data."');</script>");
+	}
+ }
 
   public function new_circle()
   {
